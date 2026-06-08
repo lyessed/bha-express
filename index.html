@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BHA Express — Transport & Logistique sur mesure</title>
+<meta name="description" content="BHA Express : société de transport de marchandises et logistique sur mesure, partout en France et en Europe. Pensez Transport, Pensez BHA." />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Montserrat', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          ink:    '#0a0d12',
+          coal:   '#10151d',
+          navy:   '#0e2b54',
+          navyd:  '#091d3b',
+          steel:  '#16345f',
+          sun:    '#f5a524',
+          ember:  '#ef7d3a',
+          silver: '#eef2f7',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0a0d12; }
+  ::selection { background: #f5a524; color: #0a0d12; }
+
+  .sky {
+    background:
+      radial-gradient(120% 90% at 78% 88%, rgba(245,165,36,0.55) 0%, rgba(239,125,58,0.32) 22%, rgba(239,125,58,0) 52%),
+      radial-gradient(90% 70% at 80% 95%, rgba(255,222,150,0.6) 0%, rgba(255,222,150,0) 40%),
+      linear-gradient(180deg, #0a1730 0%, #122546 30%, #1c3358 52%, #46406a 74%, #8a5a52 90%, #b67a4a 100%);
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+  .anim { opacity: 0; animation: fadeUp 0.9s cubic-bezier(.16,.84,.36,1) forwards; }
+  .d1 { animation-delay: .15s; } .d2 { animation-delay: .32s; } .d3 { animation-delay: .5s; }
+  .d4 { animation-delay: .68s; } .d5 { animation-delay: .86s; }
+
+  .reveal { opacity: 0; transform: translateY(34px); transition: opacity .8s cubic-bezier(.16,.84,.36,1), transform .8s cubic-bezier(.16,.84,.36,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim, .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+  }
+
+  .nav-link { position: relative; }
+  .nav-link::after { content: ''; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0; background: #f5a524; transition: width .3s ease; }
+  .nav-link:hover::after { width: 100%; }
+
+  .svc-card { transition: transform .35s cubic-bezier(.16,.84,.36,1), box-shadow .35s ease, border-color .35s ease; }
+  .svc-card:hover { transform: translateY(-6px); box-shadow: 0 22px 50px -24px rgba(14,43,84,0.45); border-color: #f5a524; }
+  .svc-card:hover .svc-ico { background: #0e2b54; color: #f5a524; }
+
+  .watermark { font-weight: 900; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px rgba(14,43,84,0.10); }
+  [data-lucide] { stroke-width: 1.6; }
+
+  .form-in {
+    width: 100%; border-radius: 8px; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14); padding: 0.75rem 0.9rem; color: #fff; font-size: 0.95rem;
+    transition: border-color .2s, background .2s;
+  }
+  .form-in::placeholder { color: rgba(255,255,255,0.4); }
+  .form-in:focus { outline: none; border-color: #f5a524; background: rgba(255,255,255,0.10); }
+  select.form-in option { background: #10151d; color: #fff; }
+  .err { color: #ffb4a2; font-size: 0.78rem; margin-top: 0.35rem; min-height: 0.5rem; display: none; }
+  .err.show { display: block; }
+  .form-in.invalid { border-color: #ff7a59; }
+</style>
+</head>
+<body class="font-sans text-silver antialiased">
+
+<!-- NAV -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="flex items-center justify-between h-[74px]">
+      <a href="#accueil" class="flex items-center gap-2.5">
+        <span class="grid place-items-center w-9 h-9 rounded-md bg-sun text-ink font-display font-900 text-lg">B</span>
+        <span class="font-display font-800 tracking-tight text-[19px] text-white">BHA<span class="text-sun">EXPRESS</span></span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 text-[13px] font-semibold tracking-wide uppercase text-white/85">
+        <a href="#accueil"  class="nav-link hover:text-white transition">Accueil</a>
+        <a href="#services" class="nav-link hover:text-white transition">Logistique</a>
+        <a href="#flotte"   class="nav-link hover:text-white transition">Flotte</a>
+        <a href="#avis"     class="nav-link hover:text-white transition">Nos clients</a>
+        <a href="#contact"  class="nav-link hover:text-white transition">Contact</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-4">
+        <a href="tel:+33662625804" class="flex items-center gap-2 text-[13px] font-semibold text-white/85 hover:text-sun transition">
+          <i data-lucide="phone-call" class="w-4 h-4"></i> 06 62 62 58 04
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-md bg-sun px-4 py-2.5 text-[13px] font-display font-700 uppercase tracking-wide text-ink hover:bg-white transition shadow-lg shadow-sun/20">
+          Demander un devis
+        </a>
+      </div>
+      <button id="burger" class="lg:hidden grid place-items-center w-10 h-10 rounded-md bg-white/10 text-white" aria-label="Menu">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-white/10 bg-ink/95 backdrop-blur-xl">
+    <nav class="px-5 py-5 flex flex-col gap-1 text-sm font-semibold uppercase tracking-wide text-white/85">
+      <a href="#accueil"  class="py-3 border-b border-white/5">Accueil</a>
+      <a href="#services" class="py-3 border-b border-white/5">Services</a>
+      <a href="#flotte"   class="py-3 border-b border-white/5">Flotte</a>
+      <a href="#avis"     class="py-3 border-b border-white/5">Nos clients</a>
+      <a href="#contact"  class="py-3 border-b border-white/5">Contact</a>
+      <a href="#contact" class="mt-3 text-center rounded-md bg-sun px-4 py-3 text-ink font-display font-700">Demander un devis</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="accueil" class="relative overflow-hidden bg-black" style="min-height:100svh;">
+  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto"
+    class="absolute inset-0 w-full h-full object-cover pointer-events-none touch-none"
+    style="min-width:100%;min-height:100%;">
+    <source src="uploads/video1.mp4" type="video/mp4">
+  </video>
+  <div class="absolute inset-0 bg-black/55 pointer-events-none"></div>
+  <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0a0d12] to-transparent pointer-events-none"></div>
+  <div class="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none opacity-[0.12]"
+       style="background:repeating-linear-gradient(90deg,transparent 0,transparent 78px,rgba(255,255,255,.35) 78px,rgba(255,255,255,.35) 80px);"></div>
+
+  <div class="relative mx-auto max-w-7xl px-5 lg:px-8 flex items-center justify-center" style="min-height:100svh;padding-top:74px;">
+    <div class="z-10 text-center lg:text-left max-w-2xl w-full">
+      <div class="anim d1 flex items-center justify-center lg:justify-start gap-3 mb-6">
+        <span class="h-px w-10 bg-sun"></span>
+        <span class="text-sun text-xs font-display font-700 uppercase tracking-[0.28em]">Transport &amp; Logistique</span>
+      </div>
+      <h1 class="anim d2 font-display font-900 text-white leading-[0.98] tracking-tight text-[clamp(2.6rem,6vw,4.6rem)]">
+        Vos marchandises,<br>livrées <span class="text-sun">en toute confiance.</span>
+      </h1>
+      <p class="anim d3 mt-6 max-w-md mx-auto lg:mx-0 text-white/75 text-lg leading-relaxed">
+        Société de transport de marchandises pour entreprises et particuliers. Une flotte moderne, des chauffeurs expérimentés, partout en France et en Europe.
+      </p>
+      <div class="anim d4 mt-9 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+        <a href="#contact" class="group inline-flex items-center gap-2.5 rounded-md bg-sun px-7 py-4 font-display font-700 uppercase tracking-wide text-ink hover:bg-white transition shadow-xl shadow-sun/25">
+          Demander un devis <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+        <a href="tel:+33662625804" class="inline-flex items-center gap-2.5 rounded-md border border-white/25 px-6 py-4 font-semibold text-white hover:bg-white/10 transition">
+          <i data-lucide="phone" class="w-4 h-4 text-sun"></i> 06 62 62 58 04
+        </a>
+      </div>
+      <p class="anim d5 mt-7 text-sm text-white/60 font-display font-600 tracking-wide italic">« Pensez Transport, Pensez BHA »</p>
+    </div>
+  </div>
+  <div class="relative pb-10 flex justify-center">
+    <a href="#piliers" class="anim d5 flex flex-col items-center gap-2 text-white/50 hover:text-sun transition">
+      <span class="text-[10px] uppercase tracking-[0.3em]">Découvrir</span>
+      <i data-lucide="chevron-down" class="w-5 h-5 animate-bounce"></i>
+    </a>
+  </div>
+</section>
+
+<!-- PILIERS -->
+<section id="piliers" class="bg-ink">
+  <div class="grid md:grid-cols-3">
+    <div class="reveal relative overflow-hidden bg-navy px-8 lg:px-12 py-14">
+      <div class="absolute inset-0 opacity-[0.07]" style="background-image:radial-gradient(rgba(255,255,255,.6) 1px,transparent 1px);background-size:18px 18px;"></div>
+      <div class="relative">
+        <span class="grid place-items-center w-14 h-14 rounded-xl bg-white/10 text-sun mb-6"><i data-lucide="shield-check" class="w-7 h-7"></i></span>
+        <h3 class="font-display font-800 text-2xl text-white">Sécurité</h3>
+        <p class="mt-3 text-white/70 leading-relaxed text-[15px]">Marchandises assurées et suivies à chaque étape. Certification ADR pour le transport de matières dangereuses en toute conformité.</p>
+      </div>
+    </div>
+    <div class="reveal relative overflow-hidden bg-steel px-8 lg:px-12 py-14" style="transition-delay:.1s">
+      <div class="absolute inset-0 opacity-[0.07]" style="background-image:radial-gradient(rgba(255,255,255,.6) 1px,transparent 1px);background-size:18px 18px;"></div>
+      <div class="relative">
+        <span class="grid place-items-center w-14 h-14 rounded-xl bg-white/10 text-sun mb-6"><i data-lucide="handshake" class="w-7 h-7"></i></span>
+        <h3 class="font-display font-800 text-2xl text-white">Engagement</h3>
+        <p class="mt-3 text-white/70 leading-relaxed text-[15px]">Un interlocuteur dédié, proactif et à l'écoute. Des solutions sur mesure adaptées aux TPE, PME et particuliers — 100&nbsp;% de satisfaction client.</p>
+      </div>
+    </div>
+    <div class="reveal relative overflow-hidden bg-navyd px-8 lg:px-12 py-14" style="transition-delay:.2s">
+      <div class="absolute inset-0 opacity-[0.07]" style="background-image:radial-gradient(rgba(255,255,255,.6) 1px,transparent 1px);background-size:18px 18px;"></div>
+      <div class="relative">
+        <span class="grid place-items-center w-14 h-14 rounded-xl bg-white/10 text-sun mb-6"><i data-lucide="globe" class="w-7 h-7"></i></span>
+        <h3 class="font-display font-800 text-2xl text-white">France &amp; Europe</h3>
+        <p class="mt-3 text-white/70 leading-relaxed text-[15px]">Livraison sur tout le territoire français et à l'international. Une flotte de 15&nbsp;véhicules prête à répondre à tous vos besoins.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A PROPOS -->
+<section id="apropos" class="bg-silver text-coal">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-5">
+        <span class="h-px w-10 bg-ember"></span>
+        <span class="text-ember text-xs font-display font-700 uppercase tracking-[0.28em]">Qui sommes-nous</span>
+      </div>
+      <h2 class="font-display font-900 text-[clamp(2rem,4vw,3rem)] leading-tight tracking-tight text-navy">Votre partenaire transport, fiable et de confiance.</h2>
+      <p class="mt-6 text-coal/70 text-lg leading-relaxed">BHA Express est une société de transport de marchandises qui propose ses services aux entreprises comme aux particuliers. Nous disposons d'une flotte de véhicules modernes et bien entretenus, capables de répondre à tous vos besoins quelle que soit la taille de votre envoi.</p>
+      <p class="mt-4 text-coal/70 text-lg leading-relaxed">Nous concevons des solutions d'expédition sur mesure, à des tarifs compétitifs et avec un haut niveau de qualité de service.</p>
+      <div class="mt-9 flex flex-wrap gap-x-10 gap-y-6">
+        <div><div class="font-display font-900 text-3xl text-navy">15</div><div class="text-sm text-coal/55 uppercase tracking-wide mt-1">Véhicules</div></div>
+        <div><div class="font-display font-900 text-3xl text-navy">+10K</div><div class="text-sm text-coal/55 uppercase tracking-wide mt-1">Transports / an</div></div>
+        <div><div class="font-display font-900 text-3xl text-navy">100%</div><div class="text-sm text-coal/55 uppercase tracking-wide mt-1">Satisfaction</div></div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.12s">
+      <img src="uploads/image1.jpg" alt="Équipe BHA Express"
+           class="w-full object-cover" style="height:clamp(320px,40vw,440px);border-radius:18px;">
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="bg-white text-coal">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28">
+    <div class="reveal text-center max-w-2xl mx-auto">
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <span class="h-px w-10 bg-ember"></span>
+        <span class="text-ember text-xs font-display font-700 uppercase tracking-[0.28em]">Nos services</span>
+        <span class="h-px w-10 bg-ember"></span>
+      </div>
+      <h2 class="font-display font-900 text-[clamp(2rem,4vw,3rem)] leading-tight tracking-tight text-navy">Des solutions complètes, de A à Z</h2>
+      <p class="mt-5 text-coal/60 text-lg">Du premier au dernier kilomètre, nous orchestrons l'ensemble de votre chaîne logistique.</p>
+    </div>
+    <div id="svc-grid" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </div>
+</section>
+
+<!-- FLOTTE -->
+<section id="flotte" class="relative bg-coal text-white overflow-hidden">
+  <div class="absolute right-0 top-0 select-none pointer-events-none watermark text-[clamp(8rem,22vw,20rem)] leading-none -mt-6 mr-2">2842</div>
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-14 items-center relative">
+    <div class="reveal order-2 lg:order-1">
+      <div class="flex items-center gap-3 mb-5">
+        <span class="h-px w-10 bg-sun"></span>
+        <span class="text-sun text-xs font-display font-700 uppercase tracking-[0.28em]">Notre flotte</span>
+      </div>
+      <h2 class="font-display font-900 text-[clamp(2rem,4vw,3.2rem)] leading-tight tracking-tight">Cargo&nbsp;<span class="text-sun">2842</span></h2>
+      <p class="mt-5 text-white/70 text-lg leading-relaxed max-w-md">Des unités conçues pour plus de confort, un meilleur rendement et une consommation maîtrisée. Robustesse, technologie embarquée et capacité de charge élevée pour vos envois les plus exigeants.</p>
+      <ul class="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-4">
+        <li class="flex items-center gap-3"><i data-lucide="gauge" class="w-5 h-5 text-sun"></i><span class="text-white/85">Suivi temps réel</span></li>
+        <li class="flex items-center gap-3"><i data-lucide="package-check" class="w-5 h-5 text-sun"></i><span class="text-white/85">Charge jusqu'à 49&nbsp;t</span></li>
+        <li class="flex items-center gap-3"><i data-lucide="snowflake" class="w-5 h-5 text-sun"></i><span class="text-white/85">Température dirigée</span></li>
+        <li class="flex items-center gap-3"><i data-lucide="leaf" class="w-5 h-5 text-sun"></i><span class="text-white/85">Faible consommation</span></li>
+      </ul>
+      <a href="#contact" class="mt-9 inline-flex items-center gap-2.5 rounded-md bg-sun px-7 py-4 font-display font-700 uppercase tracking-wide text-ink hover:bg-white transition">
+        Réserver une unité <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+    <div class="reveal order-1 lg:order-2" style="transition-delay:.1s">
+      <img src="uploads/photo-flotte.jpeg" alt="Flotte BHA Express"
+           class="w-full object-cover" style="height:clamp(320px,40vw,460px);border-radius:18px;">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="bg-navy text-white">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-14 grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 text-center">
+    <div class="reveal"><div class="font-display font-900 text-4xl lg:text-5xl text-sun" data-count="10000" data-suffix="+">0</div><div class="mt-2 text-sm uppercase tracking-wide text-white/65">Transports par an</div></div>
+    <div class="reveal" style="transition-delay:.08s"><div class="font-display font-900 text-4xl lg:text-5xl text-sun" data-count="100" data-suffix="%">0</div><div class="mt-2 text-sm uppercase tracking-wide text-white/65">Satisfaction</div></div>
+    <div class="reveal" style="transition-delay:.16s"><div class="font-display font-900 text-4xl lg:text-5xl text-sun" data-count="15">0</div><div class="mt-2 text-sm uppercase tracking-wide text-white/65">Véhicules</div></div>
+    <div class="reveal" style="transition-delay:.24s"><div class="font-display font-900 text-4xl lg:text-5xl text-sun">24/7</div><div class="mt-2 text-sm uppercase tracking-wide text-white/65">France &amp; Europe</div></div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section id="avis" class="bg-silver text-coal">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28">
+    <div class="reveal text-center max-w-2xl mx-auto">
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <span class="h-px w-10 bg-ember"></span>
+        <span class="text-ember text-xs font-display font-700 uppercase tracking-[0.28em]">Nos clients</span>
+        <span class="h-px w-10 bg-ember"></span>
+      </div>
+      <h2 class="font-display font-900 text-[clamp(2rem,4vw,3rem)] leading-tight tracking-tight text-navy">Ils nous font confiance</h2>
+    </div>
+    <div class="mt-14 grid md:grid-cols-3 gap-7" id="avis-grid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="relative bg-ink text-white overflow-hidden">
+  <div class="absolute inset-0 sky opacity-40"></div>
+  <div class="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-14">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-5">
+        <span class="h-px w-10 bg-sun"></span>
+        <span class="text-sun text-xs font-display font-700 uppercase tracking-[0.28em]">Demander un devis</span>
+      </div>
+      <h2 class="font-display font-900 text-[clamp(2rem,4.5vw,3.4rem)] leading-tight tracking-tight">Parlons de votre prochain transport.</h2>
+      <p class="mt-5 text-white/70 text-lg max-w-md">Réponse sous 24&nbsp;h. Décrivez-nous votre besoin, nous construisons la solution la plus adaptée — et la plus compétitive.</p>
+      <div class="mt-10 space-y-5">
+        <a href="tel:+33662625804" class="flex items-center gap-4 group">
+          <span class="grid place-items-center w-12 h-12 rounded-xl bg-white/10 text-sun group-hover:bg-sun group-hover:text-ink transition"><i data-lucide="phone" class="w-5 h-5"></i></span>
+          <span><span class="block text-xs uppercase tracking-wider text-white/50">Téléphone</span><span class="font-display font-700">06 62 62 58 04 · 06 27 94 18 93</span></span>
+        </a>
+        <a href="mailto:bhaexpress@hotmail.com" class="flex items-center gap-4 group">
+          <span class="grid place-items-center w-12 h-12 rounded-xl bg-white/10 text-sun group-hover:bg-sun group-hover:text-ink transition"><i data-lucide="mail" class="w-5 h-5"></i></span>
+          <span><span class="block text-xs uppercase tracking-wider text-white/50">Email</span><span class="font-display font-700">bhaexpress@hotmail.com</span></span>
+        </a>
+        <div class="flex items-center gap-4">
+          <span class="grid place-items-center w-12 h-12 rounded-xl bg-white/10 text-sun"><i data-lucide="map-pin" class="w-5 h-5"></i></span>
+          <span><span class="block text-xs uppercase tracking-wider text-white/50">Adresse</span><span class="font-display font-700">1 Centre Commercial La Tour, 93120 La Courneuve</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.1s">
+      <form id="devis-form" novalidate class="bg-white/[0.04] backdrop-blur border border-white/10 rounded-2xl p-7 lg:p-9 space-y-5">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-white/55 mb-2">Nom complet *</label>
+            <input name="nom" type="text" class="form-in" placeholder="Jean Dupont" />
+            <p class="err"></p>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-white/55 mb-2">Téléphone *</label>
+            <input name="tel" type="tel" class="form-in" placeholder="06 12 34 56 78" />
+            <p class="err"></p>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-white/55 mb-2">Email *</label>
+          <input name="email" type="email" class="form-in" placeholder="vous@entreprise.fr" />
+          <p class="err"></p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-white/55 mb-2">Type de service</label>
+            <select name="service" class="form-in">
+              <option>Transport</option>
+              <option>Logistique</option>
+              <option>Commissionnaire de transport</option>
+              <option>Stockage</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-white/55 mb-2">Destination</label>
+            <input name="dest" type="text" class="form-in" placeholder="France / Europe" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-white/55 mb-2">Votre besoin *</label>
+          <textarea name="msg" rows="4" class="form-in resize-none" placeholder="Nature de la marchandise, volume, dates..."></textarea>
+          <p class="err"></p>
+        </div>
+        <button type="submit" class="w-full inline-flex items-center justify-center gap-2.5 rounded-md bg-sun px-7 py-4 font-display font-700 uppercase tracking-wide text-ink hover:bg-white transition shadow-xl shadow-sun/20">
+          Envoyer ma demande <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+        <p id="form-success" class="hidden text-center text-sun font-semibold">✓ Merci ! Votre demande a bien été envoyée. Nous revenons vers vous sous 24 h.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-ink border-t border-white/10 text-white/70">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2.5 mb-4">
+        <span class="grid place-items-center w-9 h-9 rounded-md bg-sun text-ink font-display font-900 text-lg">B</span>
+        <span class="font-display font-800 tracking-tight text-[19px] text-white">BHA<span class="text-sun">EXPRESS</span></span>
+      </div>
+      <p class="text-sm leading-relaxed">Votre solution transport et logistique sur mesure, dans toute la France et en Europe.</p>
+      <div class="mt-5 flex gap-3">
+        <a href="https://www.instagram.com/bhaexpress/" target="_blank" rel="noopener" aria-label="Instagram" class="grid place-items-center w-10 h-10 rounded-lg bg-white/10 hover:bg-sun hover:text-ink transition">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/bha-express-631289223/" target="_blank" rel="noopener" aria-label="LinkedIn" class="grid place-items-center w-10 h-10 rounded-lg bg-white/10 hover:bg-sun hover:text-ink transition">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5ZM3 9h4v12H3V9Zm6 0h3.8v1.64h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H9V9Z"></path></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4 class="font-display font-700 text-white text-sm uppercase tracking-wide mb-4">Services</h4>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="#services" class="hover:text-sun transition">Transport</a></li>
+        <li><a href="#services" class="hover:text-sun transition">Logistique</a></li>
+        <li><a href="#services" class="hover:text-sun transition">Commissionnaire</a></li>
+        <li><a href="#services" class="hover:text-sun transition">Stockage</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-display font-700 text-white text-sm uppercase tracking-wide mb-4">Entreprise</h4>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="#apropos" class="hover:text-sun transition">Qui sommes-nous</a></li>
+        <li><a href="#flotte" class="hover:text-sun transition">Notre flotte</a></li>
+        <li><a href="#avis" class="hover:text-sun transition">Nos clients</a></li>
+        <li><a href="#contact" class="hover:text-sun transition">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-display font-700 text-white text-sm uppercase tracking-wide mb-4">Contact</h4>
+      <ul class="space-y-2.5 text-sm">
+        <li class="flex items-start gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 mt-0.5 text-sun shrink-0"></i> 1 Centre Commercial La Tour, 93120 La Courneuve</li>
+        <li class="flex items-center gap-2.5"><i data-lucide="phone" class="w-4 h-4 text-sun shrink-0"></i> 06 62 62 58 04</li>
+        <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-sun shrink-0"></i> bhaexpress@hotmail.com</li>
+        <li class="flex items-center gap-2.5"><i data-lucide="badge-check" class="w-4 h-4 text-sun shrink-0"></i> Certifié ADR</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/45">
+      <span>© 2026 BHA Express. Tous droits réservés.</span>
+      <span class="flex gap-5"><a href="#" class="hover:text-white/70">Mentions légales</a><a href="#" class="hover:text-white/70">CGU</a><a href="#" class="hover:text-white/70">FAQ</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const services = [
+    ['truck', 'Transport', "Livraison de qualité grâce à nos chauffeurs expérimentés, pour tous types de marchandises."],
+    ['boxes', 'Logistique', "Concentrez-vous sur votre projet, on s'occupe de votre logistique de bout en bout."],
+    ['route', 'Commissionnaire', "Nous orchestrons le transport de A à Z et simplifions toutes vos expéditions."],
+    ['warehouse', 'Stockage', "Solutions de stockage flexibles et sécurisées, adaptées à vos volumes."],
+    ['satellite-dish', 'Suivi temps réel', "Suivi satellitaire de votre marchandise avec couverture France et Europe."],
+    ['triangle-alert', 'Matières ADR', "Habilités et expérimentés pour le transport de substances dangereuses."],
+    ['thermometer', 'Température dirigée', "Transport sous température contrôlée pour vos produits sensibles et fragiles."],
+    ['clock', 'En temps et en heure', "Des unités modernes et puissantes pour une livraison ponctuelle, où que vous soyez."],
+  ];
+  document.getElementById('svc-grid').innerHTML = services.map(([ico, title, desc]) => `
+    <div class="svc-card group bg-white border border-coal/10 rounded-2xl p-7">
+      <span class="svc-ico grid place-items-center w-14 h-14 rounded-xl bg-navy/5 text-navy mb-5 transition-colors"><i data-lucide="${ico}" class="w-7 h-7"></i></span>
+      <h3 class="font-display font-700 text-lg text-navy">${title}</h3>
+      <p class="mt-2 text-coal/60 text-[14.5px] leading-relaxed">${desc}</p>
+    </div>`).join('');
+
+  const avis = [
+    ["Je travaille avec BHA depuis plus d'un an sur la livraison pro en France et à l'international pour notre marchandise très fragile. J'apprécie leur professionnalisme et leur bienveillance. Enfin un transporteur à l'écoute et TRÈS proactif. Je recommande 100 %.", "Meroia S."],
+    ["Bien plus qu'une société de transport ! Conseils et services annexes adaptés notamment aux TPE/PME. D'une grande fiabilité.", "Romain J."],
+    ["Très heureuse de collaborer avec BHA. Il est difficile de trouver une solution logistique adaptée aux besoins d'une petite entreprise et BHA répond parfaitement à cet enjeu !", "Sarah B.R."],
+  ];
+  document.getElementById('avis-grid').innerHTML = avis.map(([q, who], i) => `
+    <div class="reveal bg-white rounded-2xl p-7 border border-coal/10 shadow-sm flex flex-col" style="transition-delay:${i*0.08}s">
+      <div class="flex gap-1 text-sun mb-4">${'<i data-lucide="star" class="w-4 h-4 fill-current"></i>'.repeat(5)}</div>
+      <p class="text-coal/75 leading-relaxed flex-1 text-[15px]">${q}</p>
+      <div class="mt-5 flex items-center gap-3">
+        <span class="grid place-items-center w-10 h-10 rounded-full bg-navy text-white font-display font-700">${who[0]}</span>
+        <span class="font-display font-700 text-navy">${who}</span>
+      </div>
+    </div>`).join('');
+
+  lucide.createIcons();
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) nav.classList.add('bg-ink/85','backdrop-blur-xl','shadow-lg','shadow-black/20');
+    else nav.classList.remove('bg-ink/85','backdrop-blur-xl','shadow-lg','shadow-black/20');
+  });
+
+  const burger = document.getElementById('burger');
+  const mm = document.getElementById('mobile-menu');
+  burger.addEventListener('click', () => mm.classList.toggle('hidden'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.add('hidden')));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.14 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '';
+      const dur = 1400, t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - t0) / dur, 1);
+        el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target).toLocaleString('fr-FR') + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick); cio.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+  const form = document.getElementById('devis-form');
+  const setErr = (input, msg) => {
+    const p = input.parentElement.querySelector('.err');
+    if (msg) { input.classList.add('invalid'); if (p) { p.textContent = msg; p.classList.add('show'); } }
+    else { input.classList.remove('invalid'); if (p) { p.classList.remove('show'); } }
+  };
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    let ok = true;
+    const nom = form.nom, tel = form.tel, email = form.email, msg = form.msg;
+    if (!nom.value.trim()) { setErr(nom, 'Veuillez indiquer votre nom.'); ok = false; } else setErr(nom);
+    if (!/^[0-9+\s().-]{8,}$/.test(tel.value.trim())) { setErr(tel, 'Numéro de téléphone invalide.'); ok = false; } else setErr(tel);
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())) { setErr(email, 'Adresse email invalide.'); ok = false; } else setErr(email);
+    if (msg.value.trim().length < 8) { setErr(msg, 'Décrivez brièvement votre besoin.'); ok = false; } else setErr(msg);
+    if (!ok) return;
+    document.getElementById('form-success').classList.remove('hidden');
+    form.querySelector('button[type=submit]').disabled = true;
+    form.reset();
+  });
+  form.querySelectorAll('input,textarea').forEach(el => el.addEventListener('input', () => setErr(el)));
+
+  /* Force video autoplay mobile */
+  const heroVideo = document.getElementById('hero-video');
+  if (heroVideo) {
+    heroVideo.play().catch(() => {});
+    const tryPlay = () => { heroVideo.play().catch(() => {}); };
+    document.addEventListener('touchstart', tryPlay, { once: true });
+    document.addEventListener('touchend',   tryPlay, { once: true });
+  }
+</script>
+</body>
+</html>
