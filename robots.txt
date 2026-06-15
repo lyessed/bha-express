@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bhaexpress.fr/sitemap.xml
