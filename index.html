@@ -739,7 +739,7 @@
       data.informationsComplementaires = form.informationsComplementaires.value.trim() || null;
     }
 
-    fetch('https://n8n.zerotache.pro/webhook/bha-devis', {
+    fetch('https://n8n.zerotache.pro/webhook/bha-devis?key=ZT-bha2026-K9mP3xQ7vR2nL8wY', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
