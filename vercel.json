@@ -1,17 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.bhaexpress.fr"
-        }
-      ],
-      "destination": "https://bhaexpress.fr/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/sitemap.xml",
@@ -19,15 +6,6 @@
         {
           "key": "Content-Type",
           "value": "application/xml"
-        }
-      ]
-    },
-    {
-      "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain"
         }
       ]
     }
